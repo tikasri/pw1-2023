@@ -220,6 +220,23 @@ header.shadow{
 section {
     padding: 50px 100px;
 }
+.stars .bx{
+    color: var(--main-color)
+}
+.customers-container .box p{
+    font-size: 0.938rem;
+}
+.customers-container .box h2{
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0.5rem 0 0.5rem
+}
+.customers-container .box img{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+}
 img {
     width: 100%;
 }
@@ -257,6 +274,14 @@ header{
     border-radius: 0.2rem;
     transition: 0.2s all linear;
 }
+.footer{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(17rem, auto));
+    gap: 1.5rem;
+}
+.footer-box h2{
+    font-size: 1.2rem;
+}
 .header-icon {
     font-size: 22px;
     cursor: pointer;
@@ -283,8 +308,29 @@ header{
 .about{
     align-items: center;
 }
-@media (max-width:360px)
-
+@media (max-width:360px){}
+    header{
+        padding: 11px 4%;
+    }
+    .logo img{
+        width: 45px;
+    }
+    .home-text h1{
+        font-size: 1.4rem;
+    }
+    .home-text p{
+        font-size: 0.8rem;
+        font-weight: 300;
+    }
+    .about-img {
+        order: 2;
+    }
+    .about-text h2{
+        font-size: 1.2rem;
+    }
+    .about-text h2{
+        font-size: 1.2rem;
+    }
 
 
 
