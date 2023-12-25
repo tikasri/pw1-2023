@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulir Validasi</title>
+    <style>
+         body {
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: cornsilk;
+        }
+
+        .container {
+            background-color: skyblue;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        form {
+            display: inline-block;
+            text-align: center;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 8px 16px;
+            cursor: pointer;
+        }
+
+        .output-container {
+            margin-top: 20px;
+            text-align: left;
+            color: #777;
+        }
+        .error-message {
+            color: plum;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form id="myForm">
+            <h2>Form Reservasi</h2>
+            <label for="name">Nama:</label>
+            <input type="text" id="name" name="name" maxlength="30" required><br>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required><br>
+
+            <label for="departureTime">Waktu Keberangkatan:</label>
+            <input type="text" id="departureTime" name="departureTime" placeholder="Format 24 jam, contoh: 14:30" required><br>
+
+            <label for="numTickets">Jumlah Tiket:</label>
+            <input type="number" id="numTickets" name="numTickets" min="1" max="10" required><br>
+
+            <button type="button" onclick="validateForm()">Submit</button>
+        </form>
+        <div id="output" class="output-container"></div>
+    </div>
+
+    <div id="errorMessages" class="error-message"></div>
+    <div id="displayData"></div>
+
+    <script>
+        function validateForm() {
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var departureTime = document.getElementById('departureTime').value;
+            var numTickets = document.getElementById('numTickets').value;
+
+            var errorMessages = '';
+
+            // Validasi Nama
+            if (name.trim() === '' || name.length > 30) {
+                errorMessages += 'Nama diperlukan dan harus kurang dari 30 karakter.<br>';
+            }
+
+            // Validasi Email
+            if (!isValidEmail(email)) {
+                errorMessages += 'Format email tidak valid.<br>';
+            }
+
+            // Validasi Waktu Keberangkatan
+            if (!isValidTime(departureTime)) {
+                errorMessages += 'Format waktu keberangkatan tidak valid (format 24 jam).<br>';
+            }
+
+            // Validasi Jumlah Tiket
+            if (isNaN(numTickets) || numTickets < 1 || numTickets > 10) {
+                errorMessages += 'Jumlah tiket harus berupa angka antara 1 dan 10.<br>';
+            }
+
+            var errorContainer = document.getElementById('errorMessages');
+            errorContainer.innerHTML = errorMessages;
+
+            // Jika tidak ada kesalahan, tampilkan data
+            if (errorMessages === '') {
+                var displayData = document.getElementById('displayData');
+                displayData.innerHTML = 'Nama: ' + name + '<br>Email: ' + email + '<br>Waktu Keberangkatan: ' + departureTime + '<br>Jumlah Tiket: ' + numTickets;
+            }
+        }
+
+        function isValidEmail(email) {
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        function isValidTime(time) {
+            var timeRegex = /^([01]?[0-9]|2[0-3]):[0-5][0-9]$/;
+            return timeRegex.test(time);
+        }
+    </script>
+
+</body>
+</html>
